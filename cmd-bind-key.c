@@ -34,8 +34,8 @@ enum cmd_retval	 cmd_bind_key_table(struct cmd *, struct cmd_q *, int);
 
 const struct cmd_entry cmd_bind_key_entry = {
 	"bind-key", "bind",
-	"cnrt:", 1, -1,
-	"[-cnr] [-t key-table] key command [arguments]",
+	"cnsrt:", 1, -1,
+	"[-cnsr] [-t key-table] key command [arguments]",
 	0,
 	NULL,
 	cmd_bind_key_check,
@@ -82,7 +82,11 @@ cmd_bind_key_exec(struct cmd *self, struct cmd_q *cmdq)
 
 	if (!args_has(args, 'n'))
 	    key |= KEYC_PREFIX;
-	key_bindings_add(key, args_has(args, 'r'), cmdlist);
+    if (args_has(args, 's'))
+        key_bindings_add(key, KEY_SHORT_REPEAT, cmdlist);
+    else
+        key_bindings_add(key, args_has(args, 'r'), cmdlist);
+
 	return (CMD_RETURN_NORMAL);
 }
 

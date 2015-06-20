@@ -467,7 +467,10 @@ server_client_handle_key(struct client *c, int key)
 	}
 
 	/* If this key can repeat, reset the repeat flags and timer. */
-	xtimeout = options_get_number(&s->options, "repeat-time");
+    if (bd->can_repeat == KEY_SHORT_REPEAT)
+	    xtimeout = options_get_number(&s->options, "short-repeat-time");
+    else
+	    xtimeout = options_get_number(&s->options, "repeat-time");
 	if (xtimeout != 0 && bd->can_repeat) {
 		c->flags |= CLIENT_PREFIX|CLIENT_REPEAT;
 

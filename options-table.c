@@ -285,6 +285,13 @@ const struct options_table_entry session_options_table[] = {
 	  .default_num = 0
 	},
 
+	{ .name = "short-repeat-time",
+	  .type = OPTIONS_TABLE_NUMBER,
+	  .minimum = 0,
+	  .maximum = SHRT_MAX,
+	  .default_num = 300
+	},
+
 	{ .name = "repeat-time",
 	  .type = OPTIONS_TABLE_NUMBER,
 	  .minimum = 0,

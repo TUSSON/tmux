@@ -1443,6 +1443,7 @@ struct cmd_entry {
 	enum cmd_retval	 (*exec)(struct cmd *, struct cmd_q *);
 };
 
+#define KEY_SHORT_REPEAT 2
 /* Key binding. */
 struct key_binding {
 	int		 key;
